@@ -1,0 +1,18 @@
+services:
+  rosa-core:
+    build: .
+    container_name: rosa-core
+    restart: always
+    ports:
+      - "3100:3100"
+    env_file: .env
+    volumes:
+      - rosa-core-data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3100/health', r => { process.exit(r.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  rosa-core-data:
