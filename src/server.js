@@ -42,6 +42,7 @@ const healthRoutes = require('./routes/health');
 const fileRoutes = require('./routes/files');
 const { router: learningRoutes, seedDefaultLessons } = require('./routes/learning');
 const eventRoutes = require('./routes/events');
+const agentRoutes = require('./routes/agents');
 const taskEvents = require('./events/task-events');
 
 const app = express();
@@ -101,6 +102,7 @@ app.use('/projects', projectRoutes);
 app.use('/files', fileRoutes);
 app.use('/learning', learningRoutes);
 app.use('/events', eventRoutes);
+app.use('/agents', agentRoutes);
 
 // 404 handler
 app.use((req, res) => {
